@@ -1,12 +1,10 @@
 package com.mintyn.reportservice.model;
 
 import com.mintyn.basedomains.dto.OrderReportDto;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-@Schema(description = "OrderReport model")
 @Entity(name = "customer_order")
 @NamedNativeQuery(
         name = "find_order_report_dto",

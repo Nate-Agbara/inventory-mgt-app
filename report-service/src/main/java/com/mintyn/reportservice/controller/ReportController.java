@@ -1,12 +1,13 @@
 package com.mintyn.reportservice.controller;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mintyn.basedomains.constants.AppConstants;
 import com.mintyn.basedomains.dto.OrderReportDto;
 import com.mintyn.reportservice.service.ReportService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,17 +27,15 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    @Operation(summary = "Order?startDate={}&stopDate={}")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "SUCCESS"),
-            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
-            @ApiResponse(responseCode = "401", description = "UNAUTHORIZED"),
-            @ApiResponse(responseCode = "403", description = "FORBIDDEN"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND")
-    })
     @GetMapping
-    public List<OrderReportDto> getAllOrder(@RequestParam(name = "startDate") @NotBlank String startDate,
-                                            @RequestParam(name = "stopDate") @NotBlank String stopDate){
+    public List<OrderReportDto> getAllOrder(@RequestParam(name = "startDate")
+                                                @Pattern(regexp = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+                                                        message = "value should be in format YYYY-MM-DD")
+                                                        String startDate,
+                                            @RequestParam(name = "stopDate")
+                                            @Pattern(regexp = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+                                                    message = "value should be in format YYYY-MM-DD")
+                                                    String stopDate){
         return reportService.groupOrderByDate(startDate, stopDate);
     }
 }
