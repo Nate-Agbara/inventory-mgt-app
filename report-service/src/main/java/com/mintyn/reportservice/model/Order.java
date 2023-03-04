@@ -1,5 +1,6 @@
 package com.mintyn.reportservice.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "customer_order")
+@Schema(description = "Order model")
 public class Order {
 
     @Id

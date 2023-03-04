@@ -2,6 +2,7 @@ package com.mintyn.productorderservice.model;
 
 import com.mintyn.basedomains.constants.AppConstants;
 import com.mintyn.basedomains.dto.ProductStatus;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "product")
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "Product model")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
