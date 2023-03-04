@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -34,6 +35,7 @@ public class OrderService {
                 product.getProductQuantityInStock() - orderDto.getQuantity());
 
         return OrderDto.builder()
+                .orderId( UUID.randomUUID().toString())
                 .customerName(orderDto.getCustomerName())
                 .customerMobile(orderDto.getCustomerMobile())
                 .productId(orderDto.getProductId())

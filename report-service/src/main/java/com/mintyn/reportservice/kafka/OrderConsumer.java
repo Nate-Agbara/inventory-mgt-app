@@ -1,18 +1,25 @@
 package com.mintyn.reportservice.kafka;
 
 import com.mintyn.basedomains.dto.OrderEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mintyn.reportservice.service.ReportService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class OrderConsumer {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderConsumer.class);
+
+    private ReportService reportService;
+
+    public OrderConsumer(ReportService reportService) {
+        this.reportService = reportService;
+    }
 
     @KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(OrderEvent orderEvent){
-        LOGGER.info(String.format("Order event received in report service => %s", orderEvent.toString()));
+        log.info(String.format("Order event received in report service => %s", orderEvent.toString()));
+        reportService.save(orderEvent.getOrderDto());
     }
 
 }
