@@ -25,7 +25,7 @@ The project has a dockerfile for each of the service with the services defined i
 The project also has openapi swagger integration.
 
 ## Components
-The project has two microservices with the following endpoints:
+The project is structured into three components, two microservices and a base-domain that contains common dtos between the microservices. Following are the service endpoints:
 
 product-order-service: [swagger](a href="http://localhost:8080/swagger-ui/index.html")
 
