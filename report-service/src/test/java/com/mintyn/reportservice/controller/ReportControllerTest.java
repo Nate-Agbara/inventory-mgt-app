@@ -47,7 +47,7 @@ public class ReportControllerTest {
         );
 
         //when then
-        mockMvc.perform(get(AppConstants.ORDER_URL +"?startDate=2023-03-04&stopDate=2023-03-04"))
+        mockMvc.perform(get(AppConstants.REPORT_URL +"?startDate=2023-03-04&stopDate=2023-03-04"))
                 .andExpect(status().isOk());
 
     }

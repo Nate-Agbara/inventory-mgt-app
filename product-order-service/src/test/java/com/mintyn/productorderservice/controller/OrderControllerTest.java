@@ -25,19 +25,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class OrderControllerTest {
 
-    @MockBean
-    private ProductService productService;
+//    @MockBean
+//    private ProductService productService;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void testCreateProduct() throws Exception {
+    void testCreateOrder() throws Exception {
         //given
         OrderDto orderDto = OrderDto.builder()
                 .customerName("Nathan")
                 .customerMobile("123456789")
-                .productId(Long.valueOf(1))
+                .productId(1L)
                 .quantity(1)
                 .build();
         //when //then

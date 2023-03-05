@@ -23,7 +23,6 @@ public class DataStoreSystemsHealthTest {
             DatabaseMetaData metaData = dataSource.getConnection().getMetaData();
             String catalogName = dataSource.getConnection().getCatalog();
 
-            //assertThat("",metaData, is(notNullValue()));
             assertNotNull(metaData.nullPlusNonNullIsNull());
             assertEquals("inventory", catalogName);
 
